@@ -210,6 +210,12 @@ p {
   gap: 20px;
 }
 
+.grid-4 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr));
+  gap: 20px;
+}
+
 .sr-only {
   position: absolute;
   width: 1px;

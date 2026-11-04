@@ -11,7 +11,7 @@ export const site = {
   role: 'Software Development Manager',
   yearsExperience: '8+',
   description:
-    'Ehsan Apps: focused apps by Ehsan Ullah Tariq, a software development manager with 8+ years in Android, Kotlin Multiplatform and desktop development, available for client work.',
+    'Ehsan Apps: focused apps by Ehsan Ullah Tariq, a software development manager with 8+ years in Android, Kotlin Multiplatform, web and desktop development, available for client work.',
 };
 
 export const mailto = (subject: string) => `mailto:${site.email}?subject=${encodeURIComponent(subject)}`;

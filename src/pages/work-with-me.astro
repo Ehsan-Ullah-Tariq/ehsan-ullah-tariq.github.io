@@ -9,6 +9,10 @@ const services = [
     text: 'Native Android apps in Kotlin and Jetpack Compose, or one Kotlin Multiplatform codebase that ships to both Android and iOS.',
   },
   {
+    title: 'Web apps and websites',
+    text: 'Fast, responsive web apps and sites that work on every screen size, from a product site like this one to a full web application.',
+  },
+  {
     title: 'Desktop applications',
     text: 'Desktop apps built for real work, sharing code and design with your mobile apps where it makes sense.',
   },
@@ -24,10 +28,6 @@ const services = [
     title: 'Store launch and compliance',
     text: 'Store listings, privacy policies, ads with proper user consent, crash reporting, and release builds that pass review.',
   },
-  {
-    title: 'Something else?',
-    text: "If it's software, ask. If it isn't a good fit for me, I'll say so and point you somewhere better.",
-  },
 ];
 
 const steps = [
@@ -40,7 +40,7 @@ const steps = [
 
 <Base
   title="Work with me"
-  description={`Hire ${site.owner}: app development for Android, Kotlin Multiplatform and desktop, and engineering leadership.`}
+  description={`Hire ${site.owner}: Android, Kotlin Multiplatform, web and desktop development, and engineering leadership.`}
 >
   <section class="section intro">
     <div class="wrap section-head">
@@ -70,6 +70,9 @@ const steps = [
           ))
         }
       </div>
+      <p class="other muted">
+        Something else? If it's software, ask. If it isn't a good fit for me, I'll say so and point you somewhere better.
+      </p>
     </div>
   </section>
 
@@ -131,6 +134,10 @@ const steps = [
     display: grid;
     gap: 8px;
     align-content: start;
+  }
+
+  .other {
+    margin-top: 20px;
   }
 
   .steps {
