@@ -1,7 +1,7 @@
 # Ehsan Apps website
 
-The website for Ehsan Ullah Tariq's Android apps and client work. It also hosts `app-ads.txt`, which AdMob reads to
-confirm the ads in every app are authorised.
+The website for Ehsan Ullah Tariq's apps (Android today, iOS, web or desktop later) and client work. It also hosts
+`app-ads.txt`, which AdMob reads to confirm the ads in every app are authorised.
 
 - Live now at: https://ehsan-ullah-tariq.github.io
 - Planned domain: https://ehsanullahapps.com (not bought yet)
@@ -34,8 +34,10 @@ Then open http://localhost:4321. `npm run build` writes the finished site to `di
 ### Adding an app
 
 1. Put its icon (512×512) and a few screenshots in `src/assets/apps/<slug>/`.
-2. Add an entry to `apps` in `src/data/apps.ts`. Its page appears at `/apps/<slug>/`.
-3. Set the app's "Website" on Google Play to this site, so AdMob finds `app-ads.txt`.
+2. Add an entry to `apps` in `src/data/apps.ts`. Its page appears at `/apps/<slug>/`. List where to get it in
+   `links`, one per platform (`android`, `ios`, `web`, `desktop`); each gets its own button.
+3. For an app with ads, set the developer website in its store listing (Google Play "Website", App Store "Marketing
+   URL") to this site, so AdMob finds `app-ads.txt`.
 
 `app-ads.txt` doesn't need changing for new apps on the same AdMob account (`pub-6145543964998796`).
 

@@ -1,7 +1,7 @@
 ---
 import { getImage, Image } from 'astro:assets';
-import PlayButton from '../../components/PlayButton.astro';
-import { type App, apps, playUrl } from '../../data/apps';
+import StoreButton from '../../components/StoreButton.astro';
+import { type App, apps, platformList } from '../../data/apps';
 import Base from '../../layouts/Base.astro';
 import { mailto } from '../../site';
 
@@ -24,9 +24,11 @@ const shareImage = await getImage({ src: app.icon, width: 512, format: 'png' });
       <div class="intro-text">
         <h1>{app.name}</h1>
         <p class="lead">{app.tagline}</p>
-        <p class="meta muted">{app.downloads} downloads · Free with ads · Android</p>
+        <p class="meta muted">
+          {[app.downloads && `${app.downloads} downloads`, app.pricing, platformList(app)].filter(Boolean).join(' · ')}
+        </p>
         <div class="actions">
-          <PlayButton href={playUrl(app)} />
+          {app.links.map((link) => <StoreButton link={link} />)}
           <a class="button button-secondary" href={app.privacyPolicy}>Privacy policy</a>
         </div>
       </div>

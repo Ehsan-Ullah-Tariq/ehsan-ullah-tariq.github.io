@@ -15,13 +15,33 @@ export interface Feature {
   text: string;
 }
 
+export type Platform = 'android' | 'ios' | 'web' | 'desktop';
+
+export const platformNames: Record<Platform, string> = {
+  android: 'Android',
+  ios: 'iPhone & iPad',
+  web: 'Web',
+  desktop: 'Desktop',
+};
+
+/** Where to get the app: a store listing, or the web app itself. */
+export interface AppLink {
+  platform: Platform;
+  url: string;
+}
+
 export interface App {
   /** Used in the page address: /apps/<slug>/ */
   slug: string;
-  /** The title as it appears on Google Play. */
+  /** The title as it appears in the store. */
   name: string;
-  packageName: string;
   tagline: string;
+  /** In the order the buttons should appear. */
+  links: AppLink[];
+  /** For example "Free with ads" or "Free". */
+  pricing: string;
+  /** Store download count such as "1K+". Leave out for apps without one, like web apps. */
+  downloads?: string;
   /** Two or three short lines for the card on the home page. */
   highlights: string[];
   features: Feature[];
@@ -31,20 +51,30 @@ export interface App {
    * site root works both on github.io and on the custom domain.
    */
   privacyPolicy: string;
-  downloads: string;
   icon: ImageMetadata;
   screenshots: { src: ImageMetadata; alt: string }[];
 }
 
-export const playUrl = (app: App) => `https://play.google.com/store/apps/details?id=${app.packageName}`;
+const googlePlay = (packageName: string): AppLink => ({
+  platform: 'android',
+  url: `https://play.google.com/store/apps/details?id=${packageName}`,
+});
 
-// Features describe what's live on Google Play. Add new ones here when an update ships.
+/** "Android", or "Android, iPhone & iPad and Web" for an app on several platforms. */
+export const platformList = (app: App) => {
+  const names = app.links.map((link) => platformNames[link.platform]);
+  return names.length > 1 ? `${names.slice(0, -1).join(', ')} and ${names.at(-1)}` : names.join('');
+};
+
+// Features describe what's live in the stores. Add new ones here when an update ships.
 export const apps: App[] = [
   {
     slug: 'speaker-cleaner',
     name: 'Speaker Cleaner & Sound Test',
-    packageName: 'com.speakertester.android',
     tagline: "Fix a muffled speaker and check every part of your phone's audio in one app.",
+    links: [googlePlay('com.speakertester.android')],
+    pricing: 'Free with ads',
+    downloads: '1K+',
     highlights: [
       'Eject water and dust from the speaker with sound',
       'Full Audio Check with a shareable pass/fail report',
@@ -79,7 +109,6 @@ export const apps: App[] = [
     privacySummary:
       'No account needed. Microphone tests run on your phone, and recordings are never saved or uploaded. Ads are provided by Google AdMob and never interrupt a running test.',
     privacyPolicy: '/privacy-policy-speaker-tester/privacy-policy.html',
-    downloads: '1K+',
     icon: speakerIcon,
     screenshots: [
       { src: speakerShot1, alt: 'Speaker cleaner screen with water, dust and manual modes' },
@@ -91,8 +120,10 @@ export const apps: App[] = [
   {
     slug: 'screen-check',
     name: 'Screen Tester: LCD & Touch',
-    packageName: 'com.ehsanapps.screencheck',
     tagline: 'Find dead pixels, colour problems and touch dead zones before you buy, sell or repair a phone.',
+    links: [googlePlay('com.ehsanapps.screencheck')],
+    pricing: 'Free with ads',
+    downloads: '100+',
     highlights: [
       'Full-screen colours to spot dead and stuck pixels',
       'Touch tests that show exactly where touch fails',
@@ -123,7 +154,6 @@ export const apps: App[] = [
     privacySummary:
       'No account needed, and your test results stay on your phone. Ads are provided by Google AdMob and never show during a test.',
     privacyPolicy: '/privacy-policy-screencheck/privacy-policy.html',
-    downloads: '100+',
     icon: screenCheckIcon,
     screenshots: [
       { src: screenCheckShot1, alt: 'Screen Check: LCD & Touch, "Test. Validate. Trust your screen."' },

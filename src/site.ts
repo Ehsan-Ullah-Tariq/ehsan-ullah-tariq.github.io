@@ -8,8 +8,10 @@ export const site = {
   email: 'ehsanullahgit54@gmail.com',
   github: 'https://github.com/Ehsan-Ullah-Tariq',
   playDeveloper: 'https://play.google.com/store/apps/developer?id=Ehsan051',
+  role: 'Software Development Manager',
+  yearsExperience: '8+',
   description:
-    'Ehsan Apps: focused Android apps by Ehsan Ullah Tariq, an Android developer working in Kotlin and Jetpack Compose who is available for client work.',
+    'Ehsan Apps: focused apps by Ehsan Ullah Tariq, a software development manager with 8+ years in Android, Kotlin Multiplatform and desktop development, available for client work.',
 };
 
 export const mailto = (subject: string) => `mailto:${site.email}?subject=${encodeURIComponent(subject)}`;

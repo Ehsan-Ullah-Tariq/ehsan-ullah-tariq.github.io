@@ -7,16 +7,16 @@ import { mailto, site } from '../site';
 
 const services = [
   {
-    title: 'New Android apps',
-    text: 'From idea to Google Play, built in Kotlin and Jetpack Compose with a structure that is easy to keep building on.',
+    title: 'Mobile apps',
+    text: 'Android apps, or one Kotlin Multiplatform codebase for Android and iOS, from first idea to store release.',
   },
   {
-    title: 'Bring an old app up to date',
-    text: 'Move XML screens to Compose, update to the latest Android version and fix whatever Play Console is flagging.',
+    title: 'Desktop applications',
+    text: 'Desktop apps built for real work, sharing code with your mobile apps where it makes sense.',
   },
   {
-    title: 'Ads, consent and Play compliance',
-    text: 'AdMob with proper consent for EEA and UK users, app-ads.txt, privacy policies and the Data safety form.',
+    title: 'Engineering leadership',
+    text: 'Leading teams, planning delivery and architecting systems that scale, as a development or technical project manager.',
   },
 ];
 ---
@@ -25,11 +25,11 @@ const services = [
   <section class="hero">
     <div class="wrap hero-grid">
       <div class="hero-text">
-        <span class="eyebrow">Android developer</span>
-        <h1>Focused Android apps that do one job well.</h1>
+        <span class="eyebrow">{site.role}</span>
+        <h1>Focused apps that do one job well.</h1>
         <p class="lead">
-          I'm {site.owner}. I build apps in Kotlin and Jetpack Compose, publish my own as {site.name}, and help clients
-          build and fix theirs.
+          I'm {site.owner}, with {site.yearsExperience} years in software engineering. I publish my own apps as
+          {' '}{site.name}, and help teams and clients build and ship theirs.
         </p>
         <div class="actions">
           <a class="button button-primary" href="#apps">See my apps</a>
@@ -55,7 +55,7 @@ const services = [
     <div class="wrap">
       <dl class="stats card">
         <div>
-          <dt>Apps on Google Play</dt>
+          <dt>Published apps</dt>
           <dd>{apps.length}</dd>
         </div>
         <div>
@@ -63,8 +63,8 @@ const services = [
           <dd>1,100+</dd>
         </div>
         <div>
-          <dt>Built with</dt>
-          <dd>Kotlin &amp; Compose</dd>
+          <dt>Years of experience</dt>
+          <dd>{site.yearsExperience}</dd>
         </div>
       </dl>
     </div>
@@ -74,8 +74,8 @@ const services = [
     <div class="wrap">
       <div class="section-head">
         <span class="eyebrow">My apps</span>
-        <h2>Free tools for checking your phone</h2>
-        <p class="lead">Each app explains its results in plain words, and ads never interrupt a test.</p>
+        <h2>Small apps, made with care</h2>
+        <p class="lead">Each one does one job well, explains its results in plain words, and keeps ads out of the way.</p>
       </div>
       <div class="grid-2">
         {apps.map((app) => <AppCard app={app} />)}
@@ -87,8 +87,8 @@ const services = [
     <div class="wrap">
       <div class="section-head">
         <span class="eyebrow">Work with me</span>
-        <h2>Need an Android developer?</h2>
-        <p class="lead">The same care that goes into my own apps, applied to yours.</p>
+        <h2>Building something?</h2>
+        <p class="lead">The same care that goes into my own apps, applied to your product and your team.</p>
       </div>
       <div class="grid-3">
         {
@@ -106,7 +106,7 @@ const services = [
           <p class="muted">Tell me about it and I'll reply with how I'd approach it.</p>
         </div>
         <div class="actions">
-          <a class="button button-primary" href={mailto('Android app project')}>Email me</a>
+          <a class="button button-primary" href={mailto('Project enquiry')}>Email me</a>
           <a class="button button-secondary" href="/work-with-me/">How I work</a>
         </div>
       </div>

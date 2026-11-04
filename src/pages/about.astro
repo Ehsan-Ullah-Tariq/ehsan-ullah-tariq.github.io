@@ -3,10 +3,21 @@ import { apps } from '../data/apps';
 import Base from '../layouts/Base.astro';
 import { mailto, site } from '../site';
 
-// To fill in: background and years of experience, where you're based, a photo, LinkedIn and a CV link.
+// Still to add if wanted: a photo, where you're based, LinkedIn and a CV link.
+const focus = [
+  'Android',
+  'Kotlin Multiplatform',
+  'Desktop applications',
+  'Engineering leadership',
+  'Technical project management',
+];
+const industries = ['E-commerce', 'Social platforms', 'Device diagnostics'];
 ---
 
-<Base title="About" description={`About ${site.owner}, the Android developer behind ${site.name}.`}>
+<Base
+  title="About"
+  description={`About ${site.owner}: Software Development Manager and Technical Project Manager with ${site.yearsExperience} years in software engineering.`}
+>
   <section class="section">
     <div class="wrap about">
       <div class="section-head">
@@ -14,13 +25,19 @@ import { mailto, site } from '../site';
         <h1>Hi, I'm {site.owner}.</h1>
       </div>
       <div class="body">
-        <p>
-          I'm an Android developer. I build apps in Kotlin and Jetpack Compose, and I publish my own under the
-          name {site.name}.
+        <p class="intro">
+          I'm a Software Development Manager and Technical Project Manager with {site.yearsExperience} years of
+          experience in software engineering, specializing in Android, Kotlin Multiplatform and desktop application
+          development.
         </p>
         <p>
-          My apps are small, focused tools. Each one does one job well, explains its results in plain words, and keeps
-          ads out of the way while you're using it. Right now that's {
+          I've led engineering teams, architected scalable solutions and delivered production-ready applications across
+          e-commerce, social platforms and device diagnostics. I'm passionate about technology, engineering excellence
+          and building products that solve real-world problems.
+        </p>
+        <p>
+          {site.name} is where I publish my own apps: small, focused tools that each do one job well. Right now that's
+          {' '}{
             apps.map((app, i) => (
               <>
                 {i > 0 && (i === apps.length - 1 ? ' and ' : ', ')}
@@ -30,9 +47,25 @@ import { mailto, site } from '../site';
           }.
         </p>
         <p>
-          I'm also available for client work: new apps, and bringing older apps up to date. If that's what you're looking
-          for, see <a href="/work-with-me/">how I work</a>.
+          I'm also available for client work, from building an app to leading the team that builds it. See
+          {' '}<a href="/work-with-me/">how I work</a>.
         </p>
+
+        <dl class="tags">
+          <div>
+            <dt>Focus</dt>
+            <dd>
+              <ul>{focus.map((item) => <li>{item}</li>)}</ul>
+            </dd>
+          </div>
+          <div>
+            <dt>Industries</dt>
+            <dd>
+              <ul>{industries.map((item) => <li>{item}</li>)}</ul>
+            </dd>
+          </div>
+        </dl>
+
         <div class="actions">
           <a class="button button-primary" href={mailto('Hello')}>Get in touch</a>
           <a class="button button-secondary" href={site.github} rel="me">GitHub</a>
@@ -52,6 +85,48 @@ import { mailto, site } from '../site';
     display: grid;
     gap: 18px;
     font-size: 1.1rem;
+  }
+
+  .intro {
+    font-size: 1.25rem;
+    font-weight: 500;
+  }
+
+  .tags {
+    margin: 8px 0 0;
+    display: grid;
+    gap: 16px;
+  }
+
+  dt {
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+
+  dd {
+    margin: 0;
+  }
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  li {
+    padding: 6px 14px;
+    border-radius: 999px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    font-size: 0.95rem;
+    font-weight: 550;
   }
 
   .actions {

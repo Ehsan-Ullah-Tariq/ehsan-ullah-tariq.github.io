@@ -1,7 +1,7 @@
 ---
 import { Image } from 'astro:assets';
-import { type App, playUrl } from '../data/apps';
-import PlayButton from './PlayButton.astro';
+import { type App, platformList } from '../data/apps';
+import StoreButton from './StoreButton.astro';
 
 interface Props {
   app: App;
@@ -16,7 +16,9 @@ const page = `/apps/${app.slug}/`;
     <Image src={app.icon} alt="" width={88} height={88} class="icon" />
     <div>
       <h3>{app.name}</h3>
-      <p class="meta muted">{app.downloads} downloads · Free on Google Play</p>
+      <p class="meta muted">
+        {[app.downloads && `${app.downloads} downloads`, platformList(app)].filter(Boolean).join(' · ')}
+      </p>
     </div>
   </a>
   <p class="tagline">{app.tagline}</p>
@@ -24,7 +26,7 @@ const page = `/apps/${app.slug}/`;
     {app.highlights.map((line) => <li>{line}</li>)}
   </ul>
   <div class="actions">
-    <PlayButton href={playUrl(app)} />
+    {app.links.map((link) => <StoreButton link={link} />)}
     <a class="button button-secondary" href={page}>Details</a>
   </div>
 </article>

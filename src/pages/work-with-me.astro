@@ -2,53 +2,57 @@
 import Base from '../layouts/Base.astro';
 import { mailto, site } from '../site';
 
-// A first draft based on the work in my own apps. Adjust to the services and terms you want to offer.
+// Based on the bio and the work in my own apps. Adjust to the services and terms you want to offer.
 const services = [
   {
-    title: 'New Android apps',
-    text: 'From idea to Google Play. Kotlin, Jetpack Compose and Material 3, with a clean structure that is easy to keep building on after launch.',
+    title: 'Mobile apps',
+    text: 'Native Android apps in Kotlin and Jetpack Compose, or one Kotlin Multiplatform codebase that ships to both Android and iOS.',
   },
   {
-    title: 'Bring an old app up to date',
-    text: 'Move XML screens to Compose, update to the latest Android and target SDK, and fix whatever Play Console is warning about.',
+    title: 'Desktop applications',
+    text: 'Desktop apps built for real work, sharing code and design with your mobile apps where it makes sense.',
   },
   {
-    title: 'Ads, consent and in-app purchases',
-    text: 'AdMob set up properly: Google consent for EEA and UK users, ads that never interrupt the main task, app-ads.txt, and a one-time purchase to remove ads.',
+    title: 'Engineering leadership',
+    text: 'Leading development teams, setting up architecture that scales, and keeping delivery on track as a development or technical project manager.',
   },
   {
-    title: 'Google Play launch and compliance',
-    text: 'Store listing, privacy policy, Data safety form, signed release builds with R8, in-app updates and review prompts.',
+    title: 'Bring an existing app up to date',
+    text: 'Modernise old code and screens, update to the latest platform versions, and fix what the app stores are warning about.',
   },
   {
-    title: 'Stability and quality',
-    text: 'Firebase Crashlytics and Analytics, fixing crashes and slow screens, and tests for the parts that matter most.',
+    title: 'Store launch and compliance',
+    text: 'Store listings, privacy policies, ads with proper user consent, crash reporting, and release builds that pass review.',
   },
   {
     title: 'Something else?',
-    text: 'If it runs on Android, ask. If it is not a good fit for me, I will say so and point you somewhere better.',
+    text: "If it's software, ask. If it isn't a good fit for me, I'll say so and point you somewhere better.",
   },
 ];
 
 const steps = [
-  { title: 'Tell me about it', text: 'What the app should do, who it is for, and any deadline. Screenshots or an existing app help.' },
-  { title: 'Plan and estimate', text: 'I reply with how I would build it, what I need from you, and a time and cost estimate.' },
-  { title: 'Build in small steps', text: 'You get test builds as features land, so you can try the app on your own phone early.' },
-  { title: 'Launch and support', text: 'I help with the Play listing and release, then fix anything that comes up after launch.' },
+  { title: 'Tell me about it', text: 'What you want to build, who it is for, and any deadline. Screenshots or an existing product help.' },
+  { title: 'Plan and estimate', text: 'I reply with how I would approach it, what I need from you, and a time and cost estimate.' },
+  { title: 'Build in small steps', text: 'You get working builds as features land, so you can try them on your own devices early.' },
+  { title: 'Launch and support', text: 'I help with store listings and release, then fix anything that comes up after launch.' },
 ];
 ---
 
-<Base title="Work with me" description={`Hire ${site.owner} for Android app development in Kotlin and Jetpack Compose.`}>
+<Base
+  title="Work with me"
+  description={`Hire ${site.owner}: app development for Android, Kotlin Multiplatform and desktop, and engineering leadership.`}
+>
   <section class="section intro">
     <div class="wrap section-head">
       <span class="eyebrow">Work with me</span>
-      <h1>Android development, start to finish.</h1>
+      <h1>Software development, start to finish.</h1>
       <p class="lead">
-        I build and maintain Android apps in Kotlin and Jetpack Compose. I've designed, built and published my own apps
-        on Google Play, so I know the whole path from first screen to live release.
+        I'm a software development manager and technical project manager with {site.yearsExperience} years of experience.
+        I've led engineering teams and delivered production apps across e-commerce, social platforms and device
+        diagnostics, and I design, build and publish my own apps too. I can build your app, or lead the team that does.
       </p>
       <div class="actions">
-        <a class="button button-primary" href={mailto('Android app project')}>Email me about your project</a>
+        <a class="button button-primary" href={mailto('Project enquiry')}>Email me about your project</a>
       </div>
     </div>
   </section>
@@ -96,7 +100,7 @@ const steps = [
             <a href={site.github}>GitHub</a>.
           </p>
         </div>
-        <a class="button button-primary" href={mailto('Android app project')}>Email me</a>
+        <a class="button button-primary" href={mailto('Project enquiry')}>Email me</a>
       </div>
     </div>
   </section>
