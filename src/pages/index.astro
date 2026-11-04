@@ -1,0 +1,243 @@
+---
+import { Image } from 'astro:assets';
+import AppCard from '../components/AppCard.astro';
+import { apps } from '../data/apps';
+import Base from '../layouts/Base.astro';
+import { mailto, site } from '../site';
+
+const services = [
+  {
+    title: 'New Android apps',
+    text: 'From idea to Google Play, built in Kotlin and Jetpack Compose with a structure that is easy to keep building on.',
+  },
+  {
+    title: 'Bring an old app up to date',
+    text: 'Move XML screens to Compose, update to the latest Android version and fix whatever Play Console is flagging.',
+  },
+  {
+    title: 'Ads, consent and Play compliance',
+    text: 'AdMob with proper consent for EEA and UK users, app-ads.txt, privacy policies and the Data safety form.',
+  },
+];
+---
+
+<Base>
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-text">
+        <span class="eyebrow">Android developer</span>
+        <h1>Focused Android apps that do one job well.</h1>
+        <p class="lead">
+          I'm {site.owner}. I build apps in Kotlin and Jetpack Compose, publish my own as {site.name}, and help clients
+          build and fix theirs.
+        </p>
+        <div class="actions">
+          <a class="button button-primary" href="#apps">See my apps</a>
+          <a class="button button-secondary" href="/work-with-me/">Work with me</a>
+        </div>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="glow"></div>
+        {
+          apps.map((app, i) => (
+            <Image
+              src={app.icon}
+              alt=""
+              width={180}
+              height={180}
+              loading="eager"
+              class={`art-icon art-icon-${i + 1}`}
+            />
+          ))
+        }
+      </div>
+    </div>
+    <div class="wrap">
+      <dl class="stats card">
+        <div>
+          <dt>Apps on Google Play</dt>
+          <dd>{apps.length}</dd>
+        </div>
+        <div>
+          <dt>Downloads</dt>
+          <dd>1,100+</dd>
+        </div>
+        <div>
+          <dt>Built with</dt>
+          <dd>Kotlin &amp; Compose</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <section id="apps" class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">My apps</span>
+        <h2>Free tools for checking your phone</h2>
+        <p class="lead">Each app explains its results in plain words, and ads never interrupt a test.</p>
+      </div>
+      <div class="grid-2">
+        {apps.map((app) => <AppCard app={app} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section services">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Work with me</span>
+        <h2>Need an Android developer?</h2>
+        <p class="lead">The same care that goes into my own apps, applied to yours.</p>
+      </div>
+      <div class="grid-3">
+        {
+          services.map((service) => (
+            <div class="card service">
+              <h3>{service.title}</h3>
+              <p class="muted">{service.text}</p>
+            </div>
+          ))
+        }
+      </div>
+      <div class="cta card">
+        <div>
+          <h3>Have an app idea, or an app that needs fixing?</h3>
+          <p class="muted">Tell me about it and I'll reply with how I'd approach it.</p>
+        </div>
+        <div class="actions">
+          <a class="button button-primary" href={mailto('Android app project')}>Email me</a>
+          <a class="button button-secondary" href="/work-with-me/">How I work</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .hero {
+    padding: 64px 0 24px;
+    overflow: hidden;
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.25fr 1fr;
+    align-items: center;
+    gap: 40px;
+  }
+
+  .hero-text {
+    display: grid;
+    gap: 20px;
+  }
+
+  .hero-art {
+    position: relative;
+    height: 340px;
+  }
+
+  .glow {
+    position: absolute;
+    inset: 10% 5%;
+    border-radius: 50%;
+    background: radial-gradient(closest-side, color-mix(in srgb, var(--accent) 35%, transparent), transparent);
+    filter: blur(10px);
+  }
+
+  .art-icon {
+    position: absolute;
+    width: 180px;
+    height: 180px;
+    border-radius: 42px;
+    box-shadow: 0 24px 50px rgb(55 45 180 / 0.3);
+  }
+
+  .art-icon-1 {
+    top: 20px;
+    left: 8%;
+    transform: rotate(-8deg);
+  }
+
+  .art-icon-2 {
+    bottom: 20px;
+    right: 8%;
+    transform: rotate(7deg);
+  }
+
+  .stats {
+    margin: 40px 0 0;
+    padding: 22px 26px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  .stats div {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 2px;
+  }
+
+  dt {
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
+
+  dd {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 750;
+    letter-spacing: -0.02em;
+  }
+
+  .services {
+    background: var(--surface-2);
+  }
+
+  .service {
+    padding: 24px;
+    display: grid;
+    gap: 8px;
+    align-content: start;
+  }
+
+  .cta {
+    margin-top: 20px;
+    padding: 26px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+  }
+
+  .cta > div:first-child {
+    display: grid;
+    gap: 4px;
+  }
+
+  @media (max-width: 860px) {
+    .hero {
+      padding-top: 40px;
+    }
+
+    .hero-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .hero-art {
+      display: none;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .stats {
+      grid-template-columns: 1fr;
+    }
+
+    dd {
+      font-size: 1.3rem;
+    }
+  }
+</style>

@@ -1,0 +1,60 @@
+---
+import { apps } from '../data/apps';
+import Base from '../layouts/Base.astro';
+import { mailto, site } from '../site';
+
+// To fill in: background and years of experience, where you're based, a photo, LinkedIn and a CV link.
+---
+
+<Base title="About" description={`About ${site.owner}, the Android developer behind ${site.name}.`}>
+  <section class="section">
+    <div class="wrap about">
+      <div class="section-head">
+        <span class="eyebrow">About</span>
+        <h1>Hi, I'm {site.owner}.</h1>
+      </div>
+      <div class="body">
+        <p>
+          I'm an Android developer. I build apps in Kotlin and Jetpack Compose, and I publish my own under the
+          name {site.name}.
+        </p>
+        <p>
+          My apps are small, focused tools. Each one does one job well, explains its results in plain words, and keeps
+          ads out of the way while you're using it. Right now that's {
+            apps.map((app, i) => (
+              <>
+                {i > 0 && (i === apps.length - 1 ? ' and ' : ', ')}
+                <a href={`/apps/${app.slug}/`}>{app.name}</a>
+              </>
+            ))
+          }.
+        </p>
+        <p>
+          I'm also available for client work: new apps, and bringing older apps up to date. If that's what you're looking
+          for, see <a href="/work-with-me/">how I work</a>.
+        </p>
+        <div class="actions">
+          <a class="button button-primary" href={mailto('Hello')}>Get in touch</a>
+          <a class="button button-secondary" href={site.github} rel="me">GitHub</a>
+          <a class="button button-secondary" href={site.playDeveloper}>Google Play</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .about {
+    max-width: 760px;
+  }
+
+  .body {
+    display: grid;
+    gap: 18px;
+    font-size: 1.1rem;
+  }
+
+  .actions {
+    margin-top: 10px;
+  }
+</style>

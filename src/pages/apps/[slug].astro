@@ -1,0 +1,185 @@
+---
+import { getImage, Image } from 'astro:assets';
+import PlayButton from '../../components/PlayButton.astro';
+import { type App, apps, playUrl } from '../../data/apps';
+import Base from '../../layouts/Base.astro';
+import { mailto } from '../../site';
+
+export function getStaticPaths() {
+  return apps.map((app) => ({ params: { slug: app.slug }, props: { app } }));
+}
+
+interface Props {
+  app: App;
+}
+
+const { app } = Astro.props;
+const shareImage = await getImage({ src: app.icon, width: 512, format: 'png' });
+---
+
+<Base title={app.name} description={app.tagline} image={shareImage.src}>
+  <section class="intro">
+    <div class="wrap intro-grid">
+      <Image src={app.icon} alt={`${app.name} icon`} width={136} height={136} class="icon" loading="eager" />
+      <div class="intro-text">
+        <h1>{app.name}</h1>
+        <p class="lead">{app.tagline}</p>
+        <p class="meta muted">{app.downloads} downloads · Free with ads · Android</p>
+        <div class="actions">
+          <PlayButton href={playUrl(app)} />
+          <a class="button button-secondary" href={app.privacyPolicy}>Privacy policy</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="shots" aria-label="Screenshots">
+    <div class="wrap">
+      <ul class="shot-row">
+        {
+          app.screenshots.map((shot) => (
+            <li>
+              <Image src={shot.src} alt={shot.alt} height={520} widths={[260, 520]} sizes="260px" class="shot" />
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>What it does</h2>
+      </div>
+      <div class="grid-3">
+        {
+          app.features.map((feature) => (
+            <div class="card feature">
+              <h3>{feature.title}</h3>
+              <p class="muted">{feature.text}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section info">
+    <div class="wrap grid-2">
+      <div class="card panel">
+        <h2>Privacy</h2>
+        <p class="muted">{app.privacySummary}</p>
+        <a href={app.privacyPolicy}>Read the full privacy policy</a>
+      </div>
+      <div class="card panel">
+        <h2>Support</h2>
+        <p class="muted">
+          Found a problem or have an idea for the app? Email me and include your phone model so I can look into it.
+        </p>
+        <a href={mailto(`${app.name} support`)}>Email support</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .intro {
+    padding: 56px 0 32px;
+  }
+
+  .intro-grid {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 32px;
+    align-items: center;
+  }
+
+  .icon {
+    width: 136px;
+    height: 136px;
+    border-radius: 32px;
+    box-shadow: 0 18px 40px rgb(55 45 180 / 0.28);
+  }
+
+  .intro-text {
+    display: grid;
+    gap: 14px;
+    max-width: 680px;
+  }
+
+  .meta {
+    font-size: 0.95rem;
+  }
+
+  .shots {
+    padding: 8px 0 24px;
+  }
+
+  .shot-row {
+    list-style: none;
+    margin: 0;
+    padding: 6px 2px 18px;
+    display: flex;
+    gap: 18px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    overscroll-behavior-x: contain;
+  }
+
+  .shot-row li {
+    scroll-snap-align: start;
+    flex-shrink: 0;
+  }
+
+  .shot {
+    height: 460px;
+    width: auto;
+    border-radius: 22px;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+  }
+
+  .feature {
+    padding: 24px;
+    display: grid;
+    gap: 8px;
+    align-content: start;
+  }
+
+  .info {
+    padding-top: 0;
+  }
+
+  .panel {
+    padding: 28px;
+    display: grid;
+    gap: 12px;
+    align-content: start;
+  }
+
+  .panel h2 {
+    font-size: 1.4rem;
+  }
+
+  @media (max-width: 640px) {
+    .intro {
+      padding-top: 36px;
+    }
+
+    .intro-grid {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    .icon {
+      width: 96px;
+      height: 96px;
+      border-radius: 24px;
+    }
+
+    .shot {
+      height: 380px;
+    }
+  }
+</style>

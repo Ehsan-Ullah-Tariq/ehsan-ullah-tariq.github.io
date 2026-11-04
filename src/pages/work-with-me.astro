@@ -1,0 +1,172 @@
+---
+import Base from '../layouts/Base.astro';
+import { mailto, site } from '../site';
+
+// A first draft based on the work in my own apps. Adjust to the services and terms you want to offer.
+const services = [
+  {
+    title: 'New Android apps',
+    text: 'From idea to Google Play. Kotlin, Jetpack Compose and Material 3, with a clean structure that is easy to keep building on after launch.',
+  },
+  {
+    title: 'Bring an old app up to date',
+    text: 'Move XML screens to Compose, update to the latest Android and target SDK, and fix whatever Play Console is warning about.',
+  },
+  {
+    title: 'Ads, consent and in-app purchases',
+    text: 'AdMob set up properly: Google consent for EEA and UK users, ads that never interrupt the main task, app-ads.txt, and a one-time purchase to remove ads.',
+  },
+  {
+    title: 'Google Play launch and compliance',
+    text: 'Store listing, privacy policy, Data safety form, signed release builds with R8, in-app updates and review prompts.',
+  },
+  {
+    title: 'Stability and quality',
+    text: 'Firebase Crashlytics and Analytics, fixing crashes and slow screens, and tests for the parts that matter most.',
+  },
+  {
+    title: 'Something else?',
+    text: 'If it runs on Android, ask. If it is not a good fit for me, I will say so and point you somewhere better.',
+  },
+];
+
+const steps = [
+  { title: 'Tell me about it', text: 'What the app should do, who it is for, and any deadline. Screenshots or an existing app help.' },
+  { title: 'Plan and estimate', text: 'I reply with how I would build it, what I need from you, and a time and cost estimate.' },
+  { title: 'Build in small steps', text: 'You get test builds as features land, so you can try the app on your own phone early.' },
+  { title: 'Launch and support', text: 'I help with the Play listing and release, then fix anything that comes up after launch.' },
+];
+---
+
+<Base title="Work with me" description={`Hire ${site.owner} for Android app development in Kotlin and Jetpack Compose.`}>
+  <section class="section intro">
+    <div class="wrap section-head">
+      <span class="eyebrow">Work with me</span>
+      <h1>Android development, start to finish.</h1>
+      <p class="lead">
+        I build and maintain Android apps in Kotlin and Jetpack Compose. I've designed, built and published my own apps
+        on Google Play, so I know the whole path from first screen to live release.
+      </p>
+      <div class="actions">
+        <a class="button button-primary" href={mailto('Android app project')}>Email me about your project</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section tight">
+    <div class="wrap">
+      <h2 class="title">What I can help with</h2>
+      <div class="grid-3">
+        {
+          services.map((service) => (
+            <div class="card item">
+              <h3>{service.title}</h3>
+              <p class="muted">{service.text}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section tight">
+    <div class="wrap">
+      <h2 class="title">How it works</h2>
+      <ol class="steps">
+        {
+          steps.map((step, i) => (
+            <li class="card item">
+              <span class="number">{i + 1}</span>
+              <h3>{step.title}</h3>
+              <p class="muted">{step.text}</p>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <section class="section tight">
+    <div class="wrap">
+      <div class="card contact">
+        <div>
+          <h2>Let's talk</h2>
+          <p class="muted">
+            Email <a href={`mailto:${site.email}`}>{site.email}</a> and I'll get back to you. You can also see my code on
+            <a href={site.github}>GitHub</a>.
+          </p>
+        </div>
+        <a class="button button-primary" href={mailto('Android app project')}>Email me</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .intro {
+    padding-bottom: 24px;
+  }
+
+  .intro .section-head {
+    margin-bottom: 0;
+    gap: 18px;
+    max-width: 760px;
+  }
+
+  .tight {
+    padding: 32px 0;
+  }
+
+  .title {
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+  }
+
+  .item {
+    padding: 24px;
+    display: grid;
+    gap: 8px;
+    align-content: start;
+  }
+
+  .steps {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr));
+    gap: 20px;
+  }
+
+  .number {
+    display: grid;
+    place-items: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-weight: 750;
+    margin-bottom: 4px;
+  }
+
+  .contact {
+    padding: 32px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 40px;
+  }
+
+  .contact > div {
+    display: grid;
+    gap: 8px;
+    max-width: 620px;
+  }
+
+  .contact a:not(.button) {
+    overflow-wrap: anywhere;
+  }
+</style>
